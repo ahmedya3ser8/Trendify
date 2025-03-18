@@ -1,0 +1,72 @@
+<section>
+  <div class="grid grid-cols-1 md:grid-cols-2 h-screen min-h-screen overflow-hidden">
+    <div class="w-[70%] mx-auto pt-20">
+      <h2 class="text-text-color text-3xl font-semibold">Welcome Back!</h2>
+      <p class="text-sm text-gray-400">Please log in or sign up to continue using our app.</p>
+      <form class="my-3" [formGroup]="loginForm" (ngSubmit)="submitForm()" >
+        <div class="mb-3">
+          <label for="email" class="block mb-2 text-text-color">E-mail</label>
+          <div class="relative">
+            <input type="email" id="email" name="email" formControlName="email" placeholder="ahmed@example.com" class="ps-8 w-full bg-white rounded-md border-0 border-none focus:ring-0 focus:shadow-none focus:border-none" />
+            <span class="absolute bottom-0 left-2 -translate-y-[50%] leading-5 text-main-color">
+              <i class="fa-solid fa-envelope"></i>
+            </span>
+          </div>
+          @if (loginForm.get('email')?.errors && loginForm.get('email')?.touched) {
+            <div class="mt-1">
+              <ul class="max-w-md space-y-1 text-red-600 text-sm list-none">
+                @if (loginForm.get('email')?.getError('required')) {
+                  <li>email is required</li>
+                } @else if (loginForm.get('email')?.getError('email')) {
+                  <li>enter valid email</li>
+                }
+              </ul>
+            </div>
+          }
+        </div>
+        <div class="mb-3">
+          <label for="password" class="block mb-2 text-text-color">Password</label>
+          <div class="relative">
+            <input type="password" id="password" name="password" formControlName="password" placeholder="xxxxxxxxxxxxxxx" class="ps-8 w-full bg-white rounded-md border-0 border-none focus:ring-0 focus:shadow-none focus:border-none" />
+            <span class="absolute bottom-0 left-2 -translate-y-[50%] leading-5 text-main-color">
+              <i class="fa-solid fa-lock"></i>
+            </span>
+          </div>
+          @if (loginForm.get('password')?.errors && loginForm.get('password')?.touched) {
+            <div class="mt-1">
+              <ul class="max-w-md space-y-1 text-red-600 text-sm list-none">
+                @if (loginForm.get('password')?.getError('required')) {
+                  <li>password is required</li>
+                } @else if (loginForm.get('password')?.getError('pattern')) {
+                  <li>password must start with upperCase then any 6 chars or more</li>
+                }
+              </ul>
+            </div>
+          }
+        </div>
+        <a routerLink="/auth/forget-password" class="block text-right my-2 text-main-color cursor-pointer">Forgot Password?</a>
+        <button type="submit" class="w-full p-3 bg-[#8b5e35e6] transition-all duration-300 hover:bg-main-color text-white rounded-3xl">Log in</button>
+        <p class="mt-2 text-center">
+          Don't have an account?
+          <a routerLink="/auth/register" class="underline text-main-color">Sing up</a>
+        </p>
+        @if (msgError()) {
+          <p class="text-red-600 font-medium text-center mt-2"> {{msgError()}} </p>
+        }
+      </form>
+    </div>
+    <div class="relative">
+      <owl-carousel-o [options]="customOptions">
+        @for (item of sliderImgs(); track $index) {
+          <ng-template carouselSlide>
+            <img [src]="item" class="w-full object-cover" alt="slider-image" />
+            <div class="w-full absolute left-1/2 bottom-[20%] text-white -translate-x-[50%] -translate-y-[50%] text-center">
+              <h2 class="text-2xl font-bold">Welcome to Trendify</h2>
+              <p>Discover the latest trends, <br/> express your unique style.</p>
+            </div>
+          </ng-template>
+        }
+      </owl-carousel-o>
+    </div>
+  </div>
+</section>

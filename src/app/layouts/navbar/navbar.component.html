@@ -1,0 +1,51 @@
+<nav class="border-b border-gray-300">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-4">
+    <a routerLink="/home" class="flex items-center space-x-3 md:me-16 rtl:space-x-reverse">
+        <span class="text-main-color text-3xl font-serif font-normal whitespace-nowrap dark:text-white">Trendify</span>
+    </a>
+    <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+    </button>
+    <div [class.md:flex-1]="isLogin" class="hidden w-full md:flex md:justify-between md:gap-10  md:items-center md:mx-5 md:w-auto" id="navbar-default">
+      @if (isLogin) {
+        <ul class="flex flex-col py-1 md:p-0 mt-2 md:flex-row md:space-x-2 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <li>
+            <a routerLink="/home" routerLinkActive="text-main-color font-semibold" class="block py-2 px-3 text-gray-400 transition-all duration-700" aria-current="page">Home</a>
+          </li>
+          <li>
+            <a routerLink="/services" routerLinkActive="text-main-color font-semibold" class="block py-2 px-3 text-gray-400 transition-all duration-700" aria-current="page">Services</a>
+          </li>
+          <li>
+            <a routerLink="/products" routerLinkActive="text-main-color font-semibold" class="block py-2 px-3 text-gray-400 transition-all duration-700" aria-current="page">Products</a>
+          </li>
+          <li>
+            <a routerLink="/aboutus" routerLinkActive="text-main-color font-semibold" class="block py-2 px-3 text-gray-400 transition-all duration-700" aria-current="page">About us</a>
+          </li>
+          <li>
+            <a routerLink="/blog" routerLinkActive="text-main-color font-semibold" class="block py-2 px-3 text-gray-400 transition-all duration-700" aria-current="page">Blog</a>
+          </li>
+          <li>
+            <a routerLink="/contactus" routerLinkActive="text-main-color font-semibold" class="block py-2 px-3 text-gray-400 transition-all duration-700" aria-current="page">Contact us</a>
+          </li>
+        </ul>
+      }
+      <ul class="flex flex-row items-center justify-center gap-5 md:gap-1 px-4 md:p-0 md:flex-row md:space-x-2 rtl:space-x-reverse md:mt-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        @if (!isLogin) {
+          <li>
+            <a routerLink="auth/login" class="block px-10 py-2 border border-main-color text-main-color rounded-3xl" aria-current="page">Login</a>
+          </li>
+          <li>
+            <a routerLink="auth/register" class="block px-10 py-2 border border-main-color bg-main-color text-white rounded-3xl" aria-current="page">Sign Up</a>
+          </li>
+        } @else {
+          <li>
+            <i (click)="logout()" class="fa-solid fa-right-to-bracket text-2xl text-main-color cursor-pointer"></i>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</nav>

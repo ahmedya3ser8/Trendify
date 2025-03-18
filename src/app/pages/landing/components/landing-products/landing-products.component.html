@@ -1,0 +1,44 @@
+<section class="products py-20">
+  <div class="container max-w-screen-xl">
+    <div class="main-title text-center">
+      <span class="text-main-color mb-3 text-3xl font-caveat">Products</span>
+      <h2 class="text-[40px] text-text-color font-medium">Best Selling Product</h2>
+    </div>
+    <ul class="flex gap-2 justify-center bg-[#eee] w-fit my-5 mx-auto p-2 rounded-3xl">
+      @for (cat of categories(); track $index) {
+        <li [class.active]="selectedCatId == cat.id" class="rounded-3xl py-[5px] px-5 cursor-pointer" (click)="selectedId(cat.id)" > {{cat.name}} </li>
+      }
+    </ul>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5">
+      @for (product of products(); track product.id) {
+        <div class="product bg-white p-2">
+          <div class="image bg-[#F1F1F1] rounded-[5px] w-full mb-2 relative">
+            <img [src]="product.imageCover" class="w-full h-[275px] object-contain" alt="product-image" />
+            <span class="w-[2.5rem] h-[40px] bg-white border absolute top-3 right-3 flex justify-center items-center z-30 rounded-full cursor-pointer text-main-color">
+              <i class="fa-regular fa-heart text-xl"></i>
+            </span>
+          </div>
+          <div class="content p-2 text-text-color">
+            <h3 class="text-[24px] line-clamp-1"> {{product.title}} </h3>
+            <span class="flex items-center gap-1 py-2">
+              <i class="fa-solid fa-star text-yellow-600"></i>
+              <span class="text-text-color"> {{product.ratingsAverage}} </span>
+              <span class="text-gray-300 text-sm">(500+)</span>
+            </span>
+            <div class="flex justify-between items-center">
+              <div class="text-main-color">
+                {{product.price}}
+                <span class="line-through text-gray-400">250 EGP</span>
+              </div>
+              <button class="w-8 h-8 bg-main-color text-white rounded-md"><i class="fa-solid fa-plus"></i></button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <button routerLink="/products" class="py-2 px-6 rounded-3xl flex items-center mx-auto gap-2 border border-main-color text-main-color transition-all duration-300 hover:bg-main-color hover:text-white mt-6">
+      See All
+      <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  </div>
+</section>

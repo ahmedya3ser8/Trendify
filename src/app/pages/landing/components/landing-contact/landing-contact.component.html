@@ -1,0 +1,45 @@
+<section class="contact py-20">
+  <div class="container max-w-screen-xl">
+    <h2 class="text-text-color font-semibold text-4xl mb-2">Contact me</h2>
+    <p class="text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit sequi ad unde.</p>
+    <form class="mt-5 w-[70%]">
+      <div class="col flex items-center gap-6 mb-5">
+        <div class="w-1/2">
+          <label for="firstName" class="block mb-2 font-semibold text-text-color">First name</label>
+          <input type="text" id="firstName" class="w-full text-gray-400 rounded-md border border-main-color focus:ring-0 focus:shadow-none focus:border-main-color" />
+        </div>
+        <div class="w-1/2">
+          <label for="lastName" class="block mb-2 font-semibold text-text-color">Last name</label>
+          <input type="text" id="lastName" class="w-full text-gray-400 rounded-md border border-main-color focus:ring-0 focus:shadow-none focus:border-main-color" />
+        </div>
+      </div>
+      <div class="col flex items-center gap-6 mb-5">
+        <div class="w-1/2">
+          <label for="email" class="block mb-2 font-semibold text-text-color">Email</label>
+          <input type="email" id="email" class="w-full text-gray-400 rounded-md border border-main-color focus:ring-0 focus:shadow-none focus:border-main-color" />
+        </div>
+        <div class="w-1/2">
+          <label for="phoneNumber" class="block mb-2 font-semibold text-text-color">Phone number</label>
+          <input type="tel" id="phoneNumber" class="w-full text-gray-400 rounded-md border border-main-color focus:ring-0 focus:shadow-none focus:border-main-color" />
+        </div>
+      </div>
+      <div class="mb-5">
+        <label for="topic" class="block mb-2 font-semibold text-text-color">Choose a topic</label>
+        <select id="topic" class="w-full text-gray-400 rounded-md border border-main-color focus:ring-0 focus:shadow-none focus:border-main-color">
+          <option value="0">select one</option>
+          <option value="1">select two</option>
+          <option value="2">select three</option>
+        </select>
+      </div>
+      <div class="mb-5">
+        <label for="message" class="block mb-2 font-semibold text-text-color">Message</label>
+        <textarea id="message" class="w-full h-40 text-gray-400 resize-none rounded-md border border-main-color focus:ring-0 focus:shadow-none focus:border-main-color" placeholder="Type your message..."></textarea>
+      </div>
+      <div class="mb-5 flex items-center gap-2">
+        <input id="accept" type="checkbox" class="border border-main-color checked:text-main-color focus:ring-0 focus:shadow-none focus:border-main-color" />
+        <label for="accept" class="text-gray-400">i accept the terms</label>
+      </div>
+      <button type="submit" class="w-1/5 py-2 px-5 bg-main-color text-white rounded-3xl">sumbit</button>
+    </form>
+  </div>
+</section>
