@@ -1,0 +1,16 @@
+<section class="bg-white py-20">
+  <div class="container max-w-screen-xl">
+    <owl-carousel-o [options]="customOptions">
+      @for (cat of categories(); track cat._id) {
+        <ng-template carouselSlide>
+          <div class="text-center">
+            <div class="w-[140px] h-[140px] mb-3 mx-auto">
+              <img [src]="cat.image" class="w-full h-full object-cover rounded-full" alt="category-image" />
+            </div>
+            <h3 class="text-text-color font-medium"> {{cat.name}} </h3>
+          </div>
+        </ng-template>
+      }
+    </owl-carousel-o>
+  </div>
+</section>

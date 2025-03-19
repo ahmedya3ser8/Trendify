@@ -1,16 +1,16 @@
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
-import { IProduct } from '../../../../shared/interfaces/iproduct';
-import { ProductsService } from '../../../../core/services/products/products.service';
-import { map } from 'rxjs';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { IProduct } from '../../interfaces/iproduct';
+import { ProductsService } from '../../../core/services/products/products.service';
+import { map } from 'rxjs';
 
 @Component({
-  selector: 'app-landing-products',
+  selector: 'app-special-products',
   imports: [RouterLink],
-  templateUrl: './landing-products.component.html',
-  styleUrl: './landing-products.component.scss'
+  templateUrl: './special-products.component.html',
+  styleUrl: './special-products.component.scss'
 })
-export class LandingProductsComponent implements OnInit {
+export class SpecialProductsComponent {
   selectedCatId: string = '';
   categories = signal([
     {name: 'All', id: ''},

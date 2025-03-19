@@ -1,0 +1,28 @@
+::ng-deep .owl-prev,
+::ng-deep .owl-next {
+  border: 1px solid #8B5E35 !important;
+  border-radius: 50% !important;
+  color: #8B5E35 !important;
+  width: 40px !important;
+  height: 40px !important;
+  background-color: #fff !important;
+  transition: all .3s !important;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px !important;
+}
+
+::ng-deep .owl-prev {
+  left: -70px;
+}
+
+::ng-deep .owl-next {
+  right: -70px;
+}
+
+::ng-deep .owl-prev:hover,
+::ng-deep .owl-next:hover {
+  background-color: #8B5E35 !important;
+  color: #fff !important;
+}

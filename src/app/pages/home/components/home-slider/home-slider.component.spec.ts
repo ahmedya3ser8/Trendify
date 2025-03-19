@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LandingDiscoverComponent } from './landing-discover.component';
+import { HomeSliderComponent } from './home-slider.component';
 
-describe('LandingDiscoverComponent', () => {
-  let component: LandingDiscoverComponent;
-  let fixture: ComponentFixture<LandingDiscoverComponent>;
+describe('HomeSliderComponent', () => {
+  let component: HomeSliderComponent;
+  let fixture: ComponentFixture<HomeSliderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LandingDiscoverComponent]
+      imports: [HomeSliderComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LandingDiscoverComponent);
+    fixture = TestBed.createComponent(HomeSliderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

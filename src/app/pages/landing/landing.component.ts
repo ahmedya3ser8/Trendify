@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
+import { SpecialDiscoverComponent } from "../../shared/components/special-discover/special-discover.component";
+import { SpecialProductsComponent } from "../../shared/components/special-products/special-products.component";
+import { SpecialServicesComponent } from "../../shared/components/special-services/special-services.component";
+import { SpecialTestimonialsComponent } from "../../shared/components/special-testimonials/special-testimonials.component";
 import { LandingContactComponent } from "./components/landing-contact/landing-contact.component";
-import { LandingCustomerComponent } from "./components/landing-customer/landing-customer.component";
-import { LandingDiscoverComponent } from "./components/landing-discover/landing-discover.component";
 import { LandingHeroComponent } from "./components/landing-hero/landing-hero.component";
-import { LandingProductsComponent } from "./components/landing-products/landing-products.component";
-import { LandingServicesComponent } from "./components/landing-services/landing-services.component";
 
 @Component({
   selector: 'app-landing',
-  imports: [LandingHeroComponent, LandingServicesComponent, LandingProductsComponent, LandingDiscoverComponent, LandingCustomerComponent, LandingContactComponent],
+  imports: [LandingHeroComponent, LandingContactComponent, SpecialServicesComponent, SpecialProductsComponent, SpecialDiscoverComponent, SpecialTestimonialsComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })

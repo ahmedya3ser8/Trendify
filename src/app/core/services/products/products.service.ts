@@ -14,4 +14,7 @@ export class ProductsService {
       }
     });
   }
+  getAllProducts(): Observable<any> {
+    return this.httpClient.get(`https://ecommerce.routemisr.com/api/v1/products`);
+  }
 }

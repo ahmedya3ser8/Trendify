@@ -1,0 +1,16 @@
+<section class="overflow-hidden">
+  <owl-carousel-o [options]="customOptions">
+    @for (slid of imgSlider(); track $index) {
+      <ng-template carouselSlide>
+        <div class="relative text-white">
+          <img [src]="slid" class="w-full h-[500px] object-cover" alt="slide-image" />
+          <div class="absolute top-[40%] left-0 translate-x-[50%]">
+            <h2 class="text-4xl font-medium mb-3"> Upgrade your Style </h2>
+            <p class="text-[25px] mb-5"> up to 50% off on all <br/> clothing and accessories! </p>
+            <button class="py-3 px-5 bg-main-color text-white rounded-md">Shop Now</button>
+          </div>
+        </div>
+      </ng-template>
+    }
+  </owl-carousel-o>
+</section>

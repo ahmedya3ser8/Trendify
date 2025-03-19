@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
 
 @Component({
-  selector: 'app-landing-customer',
+  selector: 'app-special-testimonials',
   imports: [],
-  templateUrl: './landing-customer.component.html',
-  styleUrl: './landing-customer.component.scss'
+  templateUrl: './special-testimonials.component.html',
+  styleUrl: './special-testimonials.component.scss'
 })
-export class LandingCustomerComponent {
+export class SpecialTestimonialsComponent {
   customersData = signal([
     {title: 'Berry Gunawan', count: 3.5, desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio veritatis quam vitae voluptas illum!'},
     {title: 'Berry Gunawan', count: 3.8, desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio veritatis quam vitae voluptas illum!'},
