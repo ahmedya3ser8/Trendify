@@ -1,1 +1,27 @@
-<p>blog works!</p>
+<section class="py-20">
+  <div class="container max-w-screen-xl">
+    <div class="main-title text-center">
+      <h1 class="text-text-color mb-3 text-4xl font-bold">Blog</h1>
+      <p class="text-sm text-gray-400 font-medium">Make your best moments more stylish with our latest designs of clothing.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-10 mt-10 p-5">
+      @for (blog of blogImgs(); track $index) {
+        <div class="blog rounded-md shadow-md">
+          <img [src]="blog" class="w-full" alt="blog-image" />
+          <div class="caption bg-white p-5 text-gray-500">
+            <div class="flex justify-between items-center">
+              <span>Fashion</span>
+              <span> {{date | date}} </span>
+            </div>
+            <h2 class="my-5 text-text-color text-xl font-bold">The perfect Shopify theme</h2>
+            <p class="text-sm">
+              Shopify is the second most popular eCommerce store builder in the world. You can use Shopify in...
+            </p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<app-subscription></app-subscription>
