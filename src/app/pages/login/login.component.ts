@@ -1,12 +1,13 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { AuthService } from '../../core/services/auth/auth.service';
+import { ErrorMessageComponent } from "../../shared/components/error-message/error-message.component";
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, CarouselModule, RouterLink],
+  imports: [ReactiveFormsModule, CarouselModule, RouterLink, ErrorMessageComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -44,7 +45,7 @@ sliderImgs: WritableSignal<string[]> = signal(['/images/auth-slider-1.png', '/im
         next: (res) => {
           if (res.message === "success") {
             localStorage.setItem('user-token', res.token);
-            this.authService.getUserData();
+            this.authService.saveUserData();
             this.router.navigateByUrl('/home');
           }
         },

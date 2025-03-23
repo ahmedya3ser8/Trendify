@@ -9,16 +9,14 @@ import { AuthService } from '../../core/services/auth/auth.service';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit {
-  isLogin: boolean = false;
+  isLogin: any;
   private readonly authService = inject(AuthService);
   ngOnInit(): void {
-    this.authService.userData.subscribe(() => {
-      if (this.authService.userData.getValue() == null) {
-        this.isLogin = false;
-      } else {
-        this.isLogin = true;
-      }
-    })
+  this.authService.userData.subscribe({
+    next: (res) => {
+      this.isLogin = res;
+    }
+  })
   }
   logout(): void {
     this.authService.logout();

@@ -6,3 +6,10 @@
 body {
   font-family: "Poppins", serif;
 }
+
+.ngx-pagination .current {
+  background: #8B5E35 !important;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 6px;
+}

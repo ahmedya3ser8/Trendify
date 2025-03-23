@@ -32,7 +32,7 @@ export class SpecialProductsComponent {
     }
   }
   filterdProductsByCategoryId(id: string): void {
-    this.productsService.getProductsByCategoryId(id).pipe(map(products => products.data.slice(0,4))).subscribe({
+    this.productsService.getProductsByCategoryId(id, 1, 12).pipe(map(products => products.data.slice(0,4))).subscribe({
       next: (res) => {
         this.products.set(res);
       },

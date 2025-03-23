@@ -1,0 +1,20 @@
+@if (inputControl()?.errors && inputControl()?.touched) {
+  <div class="mt-1">
+    <ul class="max-w-md space-y-1 text-red-600 text-sm list-none">
+      @if (inputControl()?.getError('required')) {
+        <li> {{inputTitle()}} </li>
+      } @else if (inputControl()?.getError('email')) {
+        <li>enter valid email</li>
+      }
+      @else if (inputControl()?.getError('minlength')) {
+        <li>username should be more than or equal 3 chars</li>
+      }
+      @else if (inputControl()?.getError('maxlength')) {
+        <li>username should be less than or equal 20 chars</li>
+      }
+      @else if (inputControl()?.getError('pattern')) {
+        <li> {{inputMessage()}} </li>
+      }
+    </ul>
+  </div>
+}

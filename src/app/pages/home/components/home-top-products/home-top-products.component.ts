@@ -13,7 +13,7 @@ export class HomeTopProductsComponent {
 products: WritableSignal<IProduct[]> = signal([]);
   private readonly productsService = inject(ProductsService);
   ngOnInit(): void {
-    this.productsService.getAllProducts().pipe(map(products => products.data.slice(0,8))).subscribe({
+    this.productsService.getStaticProducts().pipe(map(products => products.data.slice(0,8))).subscribe({
       next: (res) => {
         this.products.set(res);
       }

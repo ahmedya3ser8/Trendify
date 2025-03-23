@@ -13,7 +13,7 @@ export class HomeSaleComponent implements OnInit {
   products: WritableSignal<IProduct[]> = signal([]);
   private readonly productsService = inject(ProductsService);
   ngOnInit(): void {
-    this.productsService.getAllProducts().pipe(map(products => products.data.slice(0,4))).subscribe({
+    this.productsService.getStaticProducts().pipe(map(products => products.data.slice(0,4))).subscribe({
       next: (res) => {
         this.products.set(res);
       }

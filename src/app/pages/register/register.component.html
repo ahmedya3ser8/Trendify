@@ -5,6 +5,7 @@
       <p class="text-sm text-gray-400">Create a new account</p>
       <form class="my-3" [formGroup]="registerForm" (ngSubmit)="submitForm()" >
         <div class="mb-3">
+          @let name = registerForm.get('name');
           <label for="userName" class="block mb-2 text-text-color">User Name</label>
           <div class="relative">
             <input type="text" id="userName" name="userName" formControlName="name" placeholder="ahmed yasser" class="ps-8 w-full bg-white rounded-md border-0 border-none focus:ring-0 focus:shadow-none focus:border-none" />
@@ -12,21 +13,10 @@
               <i class="fa-solid fa-user"></i>
             </span>
           </div>
-          @if (registerForm.get('name')?.errors && registerForm.get('name')?.touched) {
-            <div class="mt-1">
-              <ul class="max-w-md space-y-1 text-red-600 text-sm list-none">
-                @if (registerForm.get('name')?.getError('required')) {
-                  <li>username is required</li>
-                } @else if (registerForm.get('name')?.getError('minlength')) {
-                  <li>username should be more than or equal 3 chars</li>
-                } @else if (registerForm.get('name')?.getError('maxlength')) {
-                  <li>username should be less than or equal 20 chars</li>
-                }
-              </ul>
-            </div>
-          }
+          <app-error-message [inputControl]="name" [inputTitle]="'username is required'" ></app-error-message>
         </div>
         <div class="mb-3">
+          @let email = registerForm.get('email');
           <label for="email" class="block mb-2 text-text-color">E-mail</label>
           <div class="relative">
             <input type="email" id="email" name="email" formControlName="email" placeholder="ahmed@example.com" class="ps-8 w-full bg-white rounded-md border-0 border-none focus:ring-0 focus:shadow-none focus:border-none" />
@@ -34,19 +24,10 @@
               <i class="fa-solid fa-envelope"></i>
             </span>
           </div>
-          @if (registerForm.get('email')?.errors && registerForm.get('email')?.touched) {
-            <div class="mt-1">
-              <ul class="max-w-md space-y-1 text-red-600 text-sm list-none">
-                @if (registerForm.get('email')?.getError('required')) {
-                  <li>email is required</li>
-                } @else if (registerForm.get('email')?.getError('email')) {
-                  <li>enter valid email</li>
-                }
-              </ul>
-            </div>
-          }
+          <app-error-message [inputControl]="email" [inputTitle]="'email is required'" ></app-error-message>
         </div>
         <div class="mb-3">
+          @let password = registerForm.get('password');
           <label for="password" class="block mb-2 text-text-color">Password</label>
           <div class="relative">
             <input type="password" id="password" name="password" formControlName="password" placeholder="xxxxxxxxxxxxxxx" class="ps-8 w-full bg-white rounded-md border-0 border-none focus:ring-0 focus:shadow-none focus:border-none" />
@@ -54,19 +35,10 @@
               <i class="fa-solid fa-lock"></i>
             </span>
           </div>
-          @if (registerForm.get('password')?.errors && registerForm.get('password')?.touched) {
-            <div class="mt-1">
-              <ul class="max-w-md space-y-1 text-red-600 text-sm list-none">
-                @if (registerForm.get('password')?.getError('required')) {
-                  <li>password is required</li>
-                } @else if (registerForm.get('password')?.getError('pattern')) {
-                  <li>password must start with upperCase then any 6 chars or more</li>
-                }
-              </ul>
-            </div>
-          }
+          <app-error-message [inputControl]="password" [inputTitle]="'password is required'" [inputMessage]="'password must start with upperCase then any 6 chars or more'" ></app-error-message>
         </div>
         <div class="mb-3">
+          @let rePassword = registerForm.get('rePassword');
           <label for="rePassword" class="block mb-2 text-text-color">Confirm Password</label>
           <div class="relative">
             <input type="password" id="rePassword" name="rePassword" formControlName="rePassword" placeholder="xxxxxxxxxxxxxxx" class="ps-8 w-full bg-white rounded-md border-0 border-none focus:ring-0 focus:shadow-none focus:border-none" />
@@ -74,20 +46,14 @@
               <i class="fa-solid fa-lock"></i>
             </span>
           </div>
-          @if (registerForm.getError('mismatch') && registerForm.get('rePassword')?.touched) {
+          @if (registerForm.getError('mismatch') && rePassword?.touched) {
             <div class="mt-1">
               <ul class="max-w-md space-y-1 text-red-600 text-sm list-none">
                 <li>password and confirmPassword dosen't match</li>
               </ul>
             </div>
           }
-          @if (registerForm.get('rePassword')?.getError('required') && registerForm.get('rePassword')?.touched) {
-            <div class="mt-1">
-              <ul class="max-w-md space-y-1 text-red-600 text-sm list-none">
-                <li>Confirm Password is required</li>
-              </ul>
-            </div>
-          }
+          <app-error-message [inputControl]="rePassword" [inputTitle]="'Confirm Password is required'" ></app-error-message>
         </div>
         <button type="submit" class="w-full p-3 bg-[#8b5e35e6] transition-all duration-300 hover:bg-main-color text-white rounded-3xl">Sign Up</button>
         <p class="mt-2 text-center">

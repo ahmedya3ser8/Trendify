@@ -3,10 +3,11 @@ import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validator
 import { AuthService } from '../../core/services/auth/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { CarouselModule, OwlOptions  } from 'ngx-owl-carousel-o';
+import { ErrorMessageComponent } from "../../shared/components/error-message/error-message.component";
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, CarouselModule, RouterLink],
+  imports: [ReactiveFormsModule, CarouselModule, RouterLink, ErrorMessageComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })

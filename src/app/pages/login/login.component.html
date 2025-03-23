@@ -5,6 +5,7 @@
       <p class="text-sm text-gray-400">Please log in or sign up to continue using our app.</p>
       <form class="my-3" [formGroup]="loginForm" (ngSubmit)="submitForm()" >
         <div class="mb-3">
+          @let email = loginForm.get('email');
           <label for="email" class="block mb-2 text-text-color">E-mail</label>
           <div class="relative">
             <input type="email" id="email" name="email" formControlName="email" placeholder="ahmed@example.com" class="ps-8 w-full bg-white rounded-md border-0 border-none focus:ring-0 focus:shadow-none focus:border-none" />
@@ -12,19 +13,10 @@
               <i class="fa-solid fa-envelope"></i>
             </span>
           </div>
-          @if (loginForm.get('email')?.errors && loginForm.get('email')?.touched) {
-            <div class="mt-1">
-              <ul class="max-w-md space-y-1 text-red-600 text-sm list-none">
-                @if (loginForm.get('email')?.getError('required')) {
-                  <li>email is required</li>
-                } @else if (loginForm.get('email')?.getError('email')) {
-                  <li>enter valid email</li>
-                }
-              </ul>
-            </div>
-          }
+          <app-error-message [inputControl]="email" [inputTitle]="'email is required'"></app-error-message>
         </div>
         <div class="mb-3">
+          @let password = loginForm.get('password');
           <label for="password" class="block mb-2 text-text-color">Password</label>
           <div class="relative">
             <input type="password" id="password" name="password" formControlName="password" placeholder="xxxxxxxxxxxxxxx" class="ps-8 w-full bg-white rounded-md border-0 border-none focus:ring-0 focus:shadow-none focus:border-none" />
@@ -32,17 +24,7 @@
               <i class="fa-solid fa-lock"></i>
             </span>
           </div>
-          @if (loginForm.get('password')?.errors && loginForm.get('password')?.touched) {
-            <div class="mt-1">
-              <ul class="max-w-md space-y-1 text-red-600 text-sm list-none">
-                @if (loginForm.get('password')?.getError('required')) {
-                  <li>password is required</li>
-                } @else if (loginForm.get('password')?.getError('pattern')) {
-                  <li>password must start with upperCase then any 6 chars or more</li>
-                }
-              </ul>
-            </div>
-          }
+          <app-error-message [inputControl]="password" [inputTitle]="'password is required'" [inputMessage]="'password must start with upperCase then any 6 chars or more'" ></app-error-message>
         </div>
         <a routerLink="/auth/forget-password" class="block text-right my-2 text-main-color cursor-pointer">Forgot Password?</a>
         <button type="submit" class="w-full p-3 bg-[#8b5e35e6] transition-all duration-300 hover:bg-main-color text-white rounded-3xl">Log in</button>
