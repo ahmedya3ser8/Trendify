@@ -2,10 +2,11 @@ import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core
 import { IProduct } from '../../../../shared/interfaces/iproduct';
 import { ProductsService } from '../../../../core/services/products/products.service';
 import { map } from 'rxjs';
+import { ProductItemComponent } from "../../../../shared/components/product-item/product-item.component";
 
 @Component({
   selector: 'app-home-sale',
-  imports: [],
+  imports: [ProductItemComponent],
   templateUrl: './home-sale.component.html',
   styleUrl: './home-sale.component.scss'
 })

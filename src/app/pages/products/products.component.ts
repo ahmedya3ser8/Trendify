@@ -4,10 +4,11 @@ import { IProduct } from '../../shared/interfaces/iproduct';
 import { CategoriesService } from '../../core/services/categories/categories.service';
 import { ICategory } from '../../shared/interfaces/icategory';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ProductItemComponent } from "../../shared/components/product-item/product-item.component";
 
 @Component({
   selector: 'app-products',
-  imports: [NgxPaginationModule],
+  imports: [NgxPaginationModule, ProductItemComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })

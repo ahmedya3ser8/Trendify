@@ -3,10 +3,11 @@ import { RouterLink } from '@angular/router';
 import { IProduct } from '../../interfaces/iproduct';
 import { ProductsService } from '../../../core/services/products/products.service';
 import { map } from 'rxjs';
+import { ProductItemComponent } from "../product-item/product-item.component";
 
 @Component({
   selector: 'app-special-products',
-  imports: [RouterLink],
+  imports: [RouterLink, ProductItemComponent],
   templateUrl: './special-products.component.html',
   styleUrl: './special-products.component.scss'
 })
