@@ -1,0 +1,114 @@
+<section class="py-10">
+  <div class="container max-w-screen-xl">
+    <p class="py-3 flex justify-between items-center text-2xl border-b border-b-gray-400 mb-3 cursor-pointer select-none">
+      <span>Details</span>
+      <span class="text-sm">
+        <i class="fa-solid fa-plus"></i>
+      </span>
+    </p>
+    <p class="py-3 flex justify-between items-center text-2xl border-b border-b-gray-400 mb-3 cursor-pointer select-none">
+      <span>Dimensions</span>
+      <span class="text-sm">
+        <i class="fa-solid fa-plus"></i>
+      </span>
+    </p>
+    <p (click)="toggleMenu()" class="py-3 flex justify-between items-center text-2xl mb-3 cursor-pointer select-none">
+      <span>Reviews</span>
+      <span class="text-sm">
+        <i class="fa-solid fa-minus"></i>
+      </span>
+    </p>
+    @if (isOpen) {
+      <div [class]="{
+        'opacity-100': isOpen,
+        'opacity-0': !isOpen
+      }" class="grid grid-cols-1 md:grid-cols-[40%_minmax(0,1fr)] gap-5 transition-opacity duration-300">
+        <div class="review_left h-fit bg-white rounded-lg p-5">
+          <h3 class="text-text-color font-semibold mb-2">Customer Reviews</h3>
+          <span class="text-3xl font-bold">4.7</span>
+          <div class="stars mt-2 mb-4">
+            <i class="fa-solid fa-star text-yellow-500"></i>
+            <i class="fa-solid fa-star text-yellow-500"></i>
+            <i class="fa-solid fa-star text-yellow-500"></i>
+            <i class="fa-solid fa-star text-yellow-500"></i>
+            <i class="fa-solid fa-star text-gray-300"></i>
+          </div>
+          <span class="text-sm text-gray-400">(18 Reviews)</span>
+          <div class="flex justify-between items-center gap-3 text-xs mt-5 mb-3">
+            <span class="w-[15%]">5 stars</span>
+            <p class="bg-[#e2e8f0] h-2 w-full rounded-full">
+              <span class="bg-yellow-500 w-[85%] h-full block rounded-full"></span>
+            </p>
+            <span>488</span>
+          </div>
+          <div class="flex justify-between items-center gap-3 text-xs mb-3">
+            <span class="w-[15%]">4 stars</span>
+            <p class="bg-[#e2e8f0] h-2 w-full rounded-full">
+              <span class="bg-yellow-500 w-[45%] h-full block rounded-full"></span>
+            </p>
+            <span>74</span>
+          </div>
+          <div class="flex justify-between items-center gap-3 text-xs mb-3">
+            <span class="w-[15%]">3 stars</span>
+            <p class="bg-[#e2e8f0] h-2 w-full rounded-full">
+              <span class="bg-yellow-500 w-[15%] h-full block rounded-full"></span>
+            </p>
+            <span>14</span>
+          </div>
+          <div class="flex justify-between items-center gap-3 text-xs mb-3">
+            <span class="w-[15%]">2 stars</span>
+            <p class="bg-[#e2e8f0] h-2 w-full rounded-full">
+              <span class="h-full block rounded-full"></span>
+            </p>
+            <span>0</span>
+          </div>
+          <div class="flex justify-between items-center gap-3 text-xs mb-3">
+            <span class="w-[15%]">1 stars</span>
+            <p class="bg-[#e2e8f0] h-2 w-full rounded-full">
+              <span class="h-full block rounded-full"></span>
+            </p>
+            <span>0</span>
+          </div>
+        </div>
+        <div class="review_right bg-white rounded-lg p-5">
+          <div class="border-b border-b-gray-300 pb-4">
+            <span class="text-sm text-gray-400">Mar 24, 2025</span>
+            <div class="stars mb-4">
+              <i class="fa-solid fa-star text-yellow-500"></i>
+              <i class="fa-solid fa-star text-yellow-500"></i>
+              <i class="fa-solid fa-star text-yellow-500"></i>
+              <i class="fa-solid fa-star text-yellow-500"></i>
+              <i class="fa-solid fa-star text-gray-300"></i>
+            </div>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="w-9 h-9 rounded-full bg-[#e8dfd7] text-main-color flex justify-center items-center">AK</span>
+              <h3 class="font-semibold">Alex K.</h3>
+            </div>
+            <h4 class="text-gray-400 mb-3">Senior Analyst</h4>
+            <p class="text-text-color text-lg">
+              Lorem ipsum dolor sit amet consectetur. Egestas tincidunt sed laoreet urna id morbi turpis. Est elit egestas
+            </p>
+          </div>
+          <div class="pt-4">
+            <span class="text-sm text-gray-400">Mar 24, 2025</span>
+            <div class="stars mb-4">
+              <i class="fa-solid fa-star text-yellow-500"></i>
+              <i class="fa-solid fa-star text-yellow-500"></i>
+              <i class="fa-solid fa-star text-yellow-500"></i>
+              <i class="fa-solid fa-star text-yellow-500"></i>
+              <i class="fa-solid fa-star text-gray-300"></i>
+            </div>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="w-9 h-9 rounded-full bg-[#e8dfd7] text-main-color flex justify-center items-center">ER</span>
+              <h3 class="font-semibold">Emily R.</h3>
+            </div>
+            <h4 class="text-gray-400 mb-3">Front-End Engineer</h4>
+            <p class="text-text-color text-lg">
+              Lorem ipsum dolor sit amet consectetur. Egestas tincidunt sed laoreet urna id morbi turpis. Est elit egestas
+            </p>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>

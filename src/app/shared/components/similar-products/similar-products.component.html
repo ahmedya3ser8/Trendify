@@ -1,0 +1,13 @@
+<section class="py-20">
+  <div class="container max-w-screen-xl">
+    <h2 #similarProducts class="text-text-color text-4xl font-semibold mb-4">Similar products</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+      @defer (on viewport(similarProducts)) {
+        @for (product of products(); track product.id) {
+          <app-product-item [product]="product"></app-product-item>
+        }
+      }
+    </div>
+  </div>
+</section>
+

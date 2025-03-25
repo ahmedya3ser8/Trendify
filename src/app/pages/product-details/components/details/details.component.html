@@ -1,0 +1,73 @@
+<section class="py-28">
+  <div class="container max-w-screen-xl">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div class="image flex gap-8 justify-between">
+        <div class="w-[100px]">
+          @for (img of productItem().images; track $index) {
+            <div (click)="selectedImg(img)" class="img mb-3 border border-main-color rounded-3xl cursor-pointer overflow-hidden">
+              <img [src]="img" class="w-[80px]" alt="product-image" />
+            </div>
+          }
+        </div>
+        <div class="h-[500px] w-full relative">
+          <img [src]="imageCover" class="w-full h-full" alt="product-image" />
+          <span class="absolute top-5 right-5 w-10 h-10 rounded-full text-main-color text-lg bg-white border border-main-color flex justify-center items-center">
+            <i class="fa-regular fa-heart"></i>
+          </span>
+        </div>
+      </div>
+      <div class="content">
+        <div class="flex items-center gap-1 py-2">
+          <i class="fa-solid fa-star text-yellow-600"></i>
+          <span class="text-text-color"> {{productItem().ratingsAverage}} </span>
+          <span class="text-gray-500 text-sm">(18+)</span>
+        </div>
+        <h2 class="text-text-color text-3xl font-semibold"> {{productItem().title}} </h2>
+        <p class="my-4 text-sm text-gray-400"> {{productItem().description}} </p>
+        <div class="product_color text-text-color text-lg font-medium">
+          Color :
+          <span class="text-gray-400">{{colorName}}</span>
+        </div>
+        <ul class="product_colors flex gap-3 my-3">
+          @for (item of colors; track $index) {
+            <li (click)="selectedColor(item.name)" [style.backgroundColor]="item.color" class="w-8 h-8 rounded-full cursor-pointer"></li>
+          }
+        </ul>
+        <div class="product_size text-text-color text-lg font-medium">
+          Size :
+          <span class="text-main-color">{{sizeName}}</span>
+        </div>
+        <ul class="product_sizes flex gap-3 my-3">
+          @for (item of sizes; track $index) {
+            <li (click)="selectedSize(item.name)" class="bg-[#FCFCFD] px-4 py-2 rounded-lg cursor-pointer text-[#667085] border border-[#EAECF0]"> {{item.size}} </li>
+          }
+        </ul>
+        <div class="product_quantity text-text-color text-lg font-medium">
+          Quantity :
+          <span class="text-main-color">220</span>
+        </div>
+        <div class="flex gap-4 my-4">
+          <div class="btns flex justify-around text-text-color w-[160px] border border-main-color py-3 rounded-xl">
+            <button>
+              <i class="fa-solid fa-minus"></i>
+            </button>
+            <span>1</span>
+            <button>
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+          <button class="w-full bg-main-color rounded-xl text-white">
+            <span>149 EGP</span>
+            .
+            <span>Add to Cart</span>
+          </button>
+        </div>
+        <div class="product-delivery flex gap-3 items-center text-gray-400 px-3 py-2 bg-[#F2F4F7] mt-2">
+          <i class="fa-solid fa-truck"></i>
+          <span>Estimated Delivery :</span>
+          <span class="text-text-color font-medium"> 23 Mar 2025 - 25 Mar 2025</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

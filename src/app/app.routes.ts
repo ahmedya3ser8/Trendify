@@ -8,7 +8,8 @@ export const routes: Routes = [
   {path: '', redirectTo: 'landing', pathMatch: 'full'},
   {path: 'auth', component: AuthLayoutComponent, canActivate: [loggedGuard], children: [
     {path: 'login', loadComponent: () => import('./pages/login/login.component').then(c => c.LoginComponent), title: 'login'},
-    {path: 'register', loadComponent: () => import('./pages/register/register.component').then(c => c.RegisterComponent), title: 'register'}
+    {path: 'register', loadComponent: () => import('./pages/register/register.component').then(c => c.RegisterComponent), title: 'register'},
+    {path: 'forget-password', loadComponent: () => import('./pages/forget-password/forget-password.component').then(c => c.ForgetPasswordComponent), title: 'forget-password'}
   ]},
   {path: '', component: MainLayoutComponent, children: [
     {path: 'landing', loadComponent: () => import('./pages/landing/landing.component').then(c => c.LandingComponent), title: 'landing'},
@@ -18,6 +19,8 @@ export const routes: Routes = [
     {path: 'aboutus', loadComponent: () => import('./pages/about-us/about-us.component').then(c => c.AboutUsComponent), canActivate: [authGuard], title: 'about us '},
     {path: 'blog', loadComponent: () => import('./pages/blog/blog.component').then(c => c.BlogComponent), canActivate: [authGuard], title: 'blog'},
     {path: 'contactus', loadComponent: () => import('./pages/contact-us/contact-us.component').then(c => c.ContactUsComponent), canActivate: [authGuard], title: 'contactus'},
+    {path: 'cart', loadComponent: () => import('./pages/cart/cart.component').then(c => c.CartComponent), canActivate: [authGuard], title: 'cart'},
+    {path: 'wishlist', loadComponent: () => import('./pages/wishlist/wishlist.component').then(c => c.WishlistComponent), canActivate: [authGuard], title: 'wishlist'},
     {path: '**', loadComponent: () => import('./pages/not-found/not-found.component').then(c => c.NotFoundComponent) , title: '404'},
   ]}
 ];

@@ -39,4 +39,13 @@ export class AuthService {
     // call api to remove token
     this.router.navigateByUrl('/auth/login');
   }
+  verifyEmail(data: any): Observable<any> {
+    return this.httpClient.post(`https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords`, data);
+  }
+  verifyCode(data: any): Observable<any> {
+    return this.httpClient.post(`https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode`, data);
+  }
+  resetPassword(data: any): Observable<any> {
+    return this.httpClient.put(`https://ecommerce.routemisr.com/api/v1/auth/resetPassword`, data);
+  }
 }
