@@ -35,13 +35,15 @@
       <ul class="flex flex-row items-center justify-center gap-5 md:gap-1 px-4 md:p-0 md:flex-row md:space-x-2 rtl:space-x-reverse md:mt-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
         @if (isLogin) {
           <li>
-            <a routerLink="/wishlist" class="block text-2xl text-main-color rounded-3xl">
+            <a routerLink="/wishlist" class="block relative text-2xl text-main-color rounded-3xl">
               <i class="fa-regular fa-heart"></i>
+              <span class="absolute -top-[7px] -right-[7px] bg-main-color text-white w-5 h-5 border border-white rounded-full text-sm flex justify-center items-center">1</span>
             </a>
           </li>
           <li>
-            <a routerLink="/cart" class="block text-2xl text-main-color rounded-3xl">
+            <a routerLink="/cart" class="block relative text-2xl text-main-color rounded-3xl">
               <i class="fa-solid fa-cart-shopping"></i>
+              <span class="absolute -top-[7px] -right-[7px] bg-main-color text-white w-5 h-5 border border-white rounded-full text-sm flex justify-center items-center"> {{cartNumber()}} </span>
             </a>
           </li>
           <li>

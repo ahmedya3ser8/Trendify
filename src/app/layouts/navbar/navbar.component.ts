@@ -1,6 +1,7 @@
-import { Component, HostListener, inject, OnInit } from '@angular/core';
+import { Component, computed, HostListener, inject, OnInit, Signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../core/services/auth/auth.service';
+import { CartService } from '../../core/services/cart/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,8 +12,23 @@ import { AuthService } from '../../core/services/auth/auth.service';
 export class NavbarComponent implements OnInit {
   isLogin: any;
   isScroll: boolean = false;
+  cartNumber: Signal<number> = computed(() => this.cartService.cartNumber());
   private readonly authService = inject(AuthService);
+  private readonly cartService = inject(CartService);
   ngOnInit(): void {
+    this.getUserData();
+    this.getAllCartProducts();
+  }
+  getAllCartProducts(): void {
+    this.cartService.getAllCartProducts().subscribe({
+      next: (res) => {
+        if (res.status === "success") {
+          this.cartService.cartNumber.set(res.numOfCartItems);
+        }
+      }
+    })
+  }
+  getUserData(): void {
     this.authService.userData.subscribe({
       next: (res) => {
         this.isLogin = res;

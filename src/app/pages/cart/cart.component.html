@@ -1,1 +1,92 @@
-<p>cart works!</p>
+<section class="py-32">
+  <div class="container max-w-screen-xl">
+    <div class="flex justify-between items-center">
+      <div class="flex items-center gap-1">
+        <h2 class="text-text-color text-3xl font-medium">Cart</h2>
+        <span class="text-main-color"> {{cartNumber()}} items</span>
+      </div>
+      <button (click)="clearCartProducts()" class="py-2 px-3 rounded-md bg-main-color text-white">
+        Remove All
+        <i class="fa-solid fa-trash-can ms-1"></i>
+      </button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_350px] gap-5 mt-10">
+      <div class="bg-white p-5 rounded-md">
+        @for (prod of cartProducts()?.products; track prod.product.id) {
+          <div class="product flex items-center border-b border-gray-300 pt-5 first:pt-0 last:border-b-0">
+            <div class="image">
+              <img [src]="prod.product.imageCover" class="w-32" alt="product-image" />
+            </div>
+            <div class="content flex justify-between items-center flex-1">
+              <div class="caption">
+                <span class="text-gray-400 text-sm mb-2 block"> {{prod.product.category.name}} </span>
+                <h3 class="text-text-color text-xl font-semibold"> {{prod.product.title}} </h3>
+                <div class="star bg-[#fafafa] rounded-3xl py-1 px-2 w-fit flex items-center gap-1">
+                  <span> {{prod.product.ratingsAverage}} </span>
+                  <i class="fa-solid fa-star text-yellow-500"></i>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="text-xl"> {{prod.price}} EGP</span>
+                <div class="flex items-center gap-2 mt-3">
+                  <span (click)="removeCartProduct(prod.product.id)" class="h-10 px-3 text-main-color flex justify-center items-center cursor-pointer border border-main-color rounded-xl transition-all duration-300 hover:bg-main-color hover:text-white">
+                    <i class="fa-solid fa-trash-can ms-1"></i>
+                  </span>
+                  <div class="btns overflow-hidden flex items-center text-text-color w-[120px] h-10 border border-main-color rounded-xl">
+                    <button (click)="updateCartProductQuantity(prod.product.id, prod.count - 1)" class="w-[30%] h-full transition-all duration-300 hover:bg-main-color hover:text-white">
+                      <i class="fa-solid fa-minus"></i>
+                    </button>
+                    <span class="w-[40%] h-full flex justify-center items-center"> {{prod.count}} </span>
+                    <button (click)="updateCartProductQuantity(prod.product.id, prod.count + 1)" class="w-[30%] h-full transition-all duration-300 hover:bg-main-color hover:text-white">
+                      <i class="fa-solid fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        } @empty {
+          <p class="text-lg font-medium flex justify-center items-center h-full">
+            You have currently <span class="mx-1 text-text-color font-bold"> 0 items</span> in your cart.
+            <a routerLink="/products" class="underline cursor-pointer text-gray-400 ms-1">
+              Go To Shop
+              <i class="fa-solid fa-arrow-right ms-1 text-text-color"></i>
+            </a>
+          </p>
+        }
+      </div>
+      <div class="bg-white p-5 rounded-md h-fit">
+        <h3 class="text-text-color text-2xl mb-4">Order Summary</h3>
+        <div class="border-b border-gray-300">
+          <div class="flex justify-between items-center text-text-color mb-4">
+            <span>Price</span>
+            <span> {{cartProducts()?.totalCartPrice}} EGP</span>
+          </div>
+          <div class="flex justify-between items-center text-text-color mb-4">
+            <span>Shipping</span>
+            <span class="text-main-color">Free</span>
+          </div>
+          <div class="flex justify-between items-center text-text-color mb-4">
+            <span>Coupon Applied</span>
+            <span>0.00EGP</span>
+          </div>
+        </div>
+        <div class="pt-5">
+          <div class="flex justify-between items-center text-text-color mb-4">
+            <span class="uppercase">Total</span>
+            <span> {{cartProducts()?.totalCartPrice}} EGP</span>
+          </div>
+          <div class="flex justify-between items-center text-text-color mb-4">
+            <span>Estimated Delivery by</span>
+            <span>27 Mar, 2025</span>
+          </div>
+          <div class="mb-4 relative">
+            <input placeholder="Coupon Code" class="w-full h-[50px] rounded-lg border-gray-300 focus:ring-0 focus:shadow-none focus:border-gray-300" type="text" />
+            <button class="absolute right-[5px] top-[10%] py-2 px-3 bg-main-color text-white rounded-md">Apply</button>
+          </div>
+          <button class="p-2 w-full bg-main-color text-white rounded-full py-3">Proceed To Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

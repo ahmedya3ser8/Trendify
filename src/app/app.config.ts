@@ -1,7 +1,6 @@
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withInMemoryScrolling, withViewTransitions } from '@angular/router';
 import { NgxSpinnerModule } from "ngx-spinner";
-
 import { routes } from './app.routes';
 import {
   provideClientHydration,
@@ -12,6 +11,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { headersInterceptor } from './core/interceptors/headers/headers.interceptor';
 import { errorsInterceptor } from './core/interceptors/errors/errors.interceptor';
 import { loadingInterceptor } from './core/interceptors/loading/loading.interceptor';
+import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,6 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch(), withInterceptors([headersInterceptor, errorsInterceptor, loadingInterceptor])),
     provideAnimations(),
+    provideToastr(),
     importProvidersFrom([
       NgxSpinnerModule
     ])

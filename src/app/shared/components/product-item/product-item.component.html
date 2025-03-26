@@ -16,7 +16,7 @@
       <div class="text-main-color">
         {{product().price}} EGP
       </div>
-      <button class="w-8 h-8 bg-main-color text-white rounded-md"><i class="fa-solid fa-plus"></i></button>
+      <button (click)="addToCart(product().id)" class="w-8 h-8 bg-main-color text-white rounded-md"><i class="fa-solid fa-plus"></i></button>
     </div>
   </div>
 </div>
