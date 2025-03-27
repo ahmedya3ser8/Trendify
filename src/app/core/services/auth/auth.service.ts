@@ -3,6 +3,7 @@ import { afterNextRender, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { jwtDecode } from "jwt-decode";
+import { environments } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,10 @@ export class AuthService {
     })
   }
   signUp(data: any): Observable<any> {
-    return this.httpClient.post(`https://ecommerce.routemisr.com/api/v1/auth/signup`, data);
+    return this.httpClient.post(`${environments.baseUrl}/auth/signup`, data);
   }
   signIn(data: any): Observable<any> {
-    return this.httpClient.post(`https://ecommerce.routemisr.com/api/v1/auth/signin`, data);
+    return this.httpClient.post(`${environments.baseUrl}/auth/signin`, data);
   }
   saveUserData():void {
     if (localStorage.getItem('user-token')) {
@@ -40,12 +41,12 @@ export class AuthService {
     this.router.navigateByUrl('/auth/login');
   }
   verifyEmail(data: any): Observable<any> {
-    return this.httpClient.post(`https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords`, data);
+    return this.httpClient.post(`${environments.baseUrl}/auth/forgotPasswords`, data);
   }
   verifyCode(data: any): Observable<any> {
-    return this.httpClient.post(`https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode`, data);
+    return this.httpClient.post(`${environments.baseUrl}/auth/verifyResetCode`, data);
   }
   resetPassword(data: any): Observable<any> {
-    return this.httpClient.put(`https://ecommerce.routemisr.com/api/v1/auth/resetPassword`, data);
+    return this.httpClient.put(`${environments.baseUrl}/auth/resetPassword`, data);
   }
 }

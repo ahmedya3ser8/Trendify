@@ -2,6 +2,7 @@ import { Component, computed, HostListener, inject, OnInit, Signal } from '@angu
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { CartService } from '../../core/services/cart/cart.service';
+import { WishlistService } from '../../core/services/wishlist/wishlist.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,11 +14,21 @@ export class NavbarComponent implements OnInit {
   isLogin: any;
   isScroll: boolean = false;
   cartNumber: Signal<number> = computed(() => this.cartService.cartNumber());
+  wishlistNumber: Signal<number> = computed(() => this.wishlistService.wishlistNumber());
   private readonly authService = inject(AuthService);
   private readonly cartService = inject(CartService);
+  private readonly wishlistService = inject(WishlistService);
   ngOnInit(): void {
     this.getUserData();
     this.getAllCartProducts();
+    this.getAllWishlistProducts();
+  }
+  getAllWishlistProducts(): void {
+    this.wishlistService.getAllWishlistProducts().subscribe({
+      next: (res) => {
+        this.wishlistService.wishlistNumber.set(res.count);
+      }
+    })
   }
   getAllCartProducts(): void {
     this.cartService.getAllCartProducts().subscribe({
