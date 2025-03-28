@@ -1,1 +1,38 @@
-<p>checkout works!</p>
+<section class="py-32">
+  <div class="container max-w-screen-xl">
+    <form class="w-[50%] mx-auto" [formGroup]="addressForm" (ngSubmit)="submitForm()">
+      <div class="mb-3">
+        @let details = addressForm.get('details');
+        <label for="details" class="block mb-2 text-text-color">Details</label>
+        <input type="text" id="details" name="details" formControlName="details" class="w-full bg-white rounded-md border-0 border-none focus:ring-0 focus:shadow-none focus:border-none" />
+        <app-error-message [inputControl]="details" [inputTitle]="'details is required'"></app-error-message>
+      </div>
+      <div class="mb-3">
+        @let phone = addressForm.get('phone');
+        <label for="phone" class="block mb-2 text-text-color">Phone</label>
+        <input type="tel" id="phone" name="phone" formControlName="phone" class="w-full bg-white rounded-md border-0 border-none focus:ring-0 focus:shadow-none focus:border-none" />
+        <app-error-message [inputControl]="phone" [inputTitle]="'phone is required'" [inputMessage]="'accept only egyption numbers'" ></app-error-message>
+      </div>
+      <div class="mb-3">
+        @let city = addressForm.get('city');
+        <label for="city" class="block mb-2 text-text-color">City</label>
+        <input type="text" id="city" name="city" formControlName="city" class="w-full bg-white rounded-md border-0 border-none focus:ring-0 focus:shadow-none focus:border-none" />
+        <app-error-message [inputControl]="city" [inputTitle]="'city is required'"></app-error-message>
+      </div>
+      <div class="mb-4">
+        <h3 class="text-text-color text-2xl font-semibold mb-2">Payment Method</h3>
+        <div class="border border-[#D1D1D8] p-2 rounded-md">
+          <div class="mb-3 flex items-center gap-2 border-b border-[#D1D1D8] py-4 px-6">
+            <input (change)="payment($event)" value="online" type="radio" id="online" name="payment" checked class="accent-main-color checked:!bg-main-color checked:!border-main-color focus:ring-0 focus:shadow-none" />
+            <label for="online" class="text-text-color font-medium">Online Payment</label>
+          </div>
+          <div class="mb-3 flex items-center gap-2 py-4 px-6">
+            <input (change)="payment($event)" value="cash" type="radio" id="cash" name="payment" class="accent-main-color checked:!bg-main-color checked:!border-main-color focus:ring-0 focus:shadow-none" />
+            <label for="cash" class="text-text-color font-medium">Cash On Delivery</label>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="p-2 bg-main-color text-white rounded-full w-[25%]">Checkout</button>
+    </form>
+  </div>
+</section>

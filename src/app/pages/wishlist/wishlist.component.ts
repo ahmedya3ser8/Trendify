@@ -1,9 +1,10 @@
-import { Component, computed, inject, OnInit, Signal, signal, WritableSignal } from '@angular/core';
+import { Component, computed, inject, OnDestroy, OnInit, Signal, signal, WritableSignal } from '@angular/core';
 import { WishlistService } from '../../core/services/wishlist/wishlist.service';
 import { IProduct } from '../../shared/interfaces/iproduct';
 import { CartService } from '../../core/services/cart/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { RouterLink } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-wishlist',
@@ -11,7 +12,8 @@ import { RouterLink } from '@angular/router';
   templateUrl: './wishlist.component.html',
   styleUrl: './wishlist.component.scss'
 })
-export class WishlistComponent implements OnInit {
+export class WishlistComponent implements OnInit, OnDestroy {
+  destory$: Subject<any> = new Subject();
   wishlistNumber: Signal<number> = computed(() => this.wishlistService.wishlistNumber());
   products: WritableSignal<IProduct[]> = signal([]);
   private readonly wishlistService = inject(WishlistService);
@@ -21,7 +23,7 @@ export class WishlistComponent implements OnInit {
     this.getAllWishlistProducts();
   }
   getAllWishlistProducts(): void {
-    this.wishlistService.getAllWishlistProducts().subscribe({
+    this.wishlistService.getAllWishlistProducts().pipe(takeUntil(this.destory$)).subscribe({
       next: (res) => {
         if (res.status === "success") {
           this.wishlistService.wishlistNumber.set(res.count);
@@ -31,7 +33,7 @@ export class WishlistComponent implements OnInit {
     })
   }
   addToCart(productId: string): void {
-    this.cartService.addProductToCart(productId).subscribe({
+    this.cartService.addProductToCart(productId).pipe(takeUntil(this.destory$)).subscribe({
       next: (res) => {
         if (res.status === "success") {
           this.cartService.cartNumber.set(res.numOfCartItems);
@@ -43,7 +45,7 @@ export class WishlistComponent implements OnInit {
     })
   }
   removeProductFromWishlist(productId: string): void {
-    this.wishlistService.removeProductFromWishlist(productId).subscribe({
+    this.wishlistService.removeProductFromWishlist(productId).pipe(takeUntil(this.destory$)).subscribe({
       next: (res) => {
         if (res.status === "success") {
           this.wishlistService.wishlistNumber.set(res.data.length);
@@ -54,5 +56,8 @@ export class WishlistComponent implements OnInit {
         }
       }
     })
+  }
+  ngOnDestroy(): void {
+    this.destory$.next("Done");
   }
 }

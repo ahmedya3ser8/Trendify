@@ -21,6 +21,7 @@ export const routes: Routes = [
     {path: 'contactus', loadComponent: () => import('./pages/contact-us/contact-us.component').then(c => c.ContactUsComponent), canActivate: [authGuard], title: 'contactus'},
     {path: 'cart', loadComponent: () => import('./pages/cart/cart.component').then(c => c.CartComponent), canActivate: [authGuard], title: 'cart'},
     {path: 'wishlist', loadComponent: () => import('./pages/wishlist/wishlist.component').then(c => c.WishlistComponent), canActivate: [authGuard], title: 'wishlist'},
+    {path: 'allorders', loadComponent: () => import('./pages/order/order.component').then(c => c.OrderComponent), canActivate: [authGuard], title: 'allorders'},
     {path: 'checkout/:id', loadComponent: () => import('./pages/checkout/checkout.component').then(c => c.CheckoutComponent), canActivate: [authGuard], title: 'checkout'},
     {path: '**', loadComponent: () => import('./pages/not-found/not-found.component').then(c => c.NotFoundComponent) , title: '404'},
   ]}

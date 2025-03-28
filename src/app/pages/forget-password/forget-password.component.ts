@@ -1,9 +1,10 @@
-import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { ErrorMessageComponent } from "../../shared/components/error-message/error-message.component";
 import { AuthService } from '../../core/services/auth/auth.service';
 import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-forget-password',
@@ -11,7 +12,8 @@ import { Router } from '@angular/router';
   templateUrl: './forget-password.component.html',
   styleUrl: './forget-password.component.scss'
 })
-export class ForgetPasswordComponent {
+export class ForgetPasswordComponent implements OnInit, OnDestroy {
+  destory$: Subject<any> = new Subject();
   step: WritableSignal<number> = signal(1);
   sliderImgs: WritableSignal<string[]> = signal(['/images/auth-slider-1.png', '/images/auth-slider-2.png', '/images/auth-slider-3.png'])
   msgError: WritableSignal<string> = signal('');
@@ -52,7 +54,7 @@ export class ForgetPasswordComponent {
     this.resetPasswordForm.get('email')?.patchValue(emailValue);
     this.msgError.set('');
     if (this.verifyEmailForm.valid) {
-      this.authService.verifyEmail(this.verifyEmailForm.value).subscribe({
+      this.authService.verifyEmail(this.verifyEmailForm.value).pipe(takeUntil(this.destory$)).subscribe({
         next: (res) => {
           if (res.statusMsg === 'success') {
             this.step.set(2);
@@ -69,7 +71,7 @@ export class ForgetPasswordComponent {
   submitverifyCode(): void {
     this.msgError.set('');
     if (this.verifyCodeForm.valid) {
-      this.authService.verifyCode(this.verifyCodeForm.value).subscribe({
+      this.authService.verifyCode(this.verifyCodeForm.value).pipe(takeUntil(this.destory$)).subscribe({
         next: (res) => {
           if (res.status === 'Success') {
             this.step.set(3);
@@ -86,7 +88,7 @@ export class ForgetPasswordComponent {
   submitresetPassword(): void {
     this.msgError.set('');
     if (this.resetPasswordForm.valid) {
-      this.authService.resetPassword(this.resetPasswordForm.value).subscribe({
+      this.authService.resetPassword(this.resetPasswordForm.value).pipe(takeUntil(this.destory$)).subscribe({
         next: (res) => {
           localStorage.setItem("user-token", res.token);
           this.authService.saveUserData();
@@ -99,5 +101,8 @@ export class ForgetPasswordComponent {
     } else {
       this.resetPasswordForm.markAllAsTouched();
     }
+  }
+  ngOnDestroy(): void {
+    this.destory$.next('Done');
   }
 }

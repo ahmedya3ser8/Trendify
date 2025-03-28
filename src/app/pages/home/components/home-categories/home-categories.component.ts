@@ -1,7 +1,8 @@
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CategoriesService } from '../../../../core/services/categories/categories.service';
 import { ICategory } from '../../../../shared/interfaces/icategory';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-home-categories',
@@ -9,7 +10,8 @@ import { ICategory } from '../../../../shared/interfaces/icategory';
   templateUrl: './home-categories.component.html',
   styleUrl: './home-categories.component.scss'
 })
-export class HomeCategoriesComponent implements OnInit {
+export class HomeCategoriesComponent implements OnInit, OnDestroy {
+  destory$: Subject<any> = new Subject();
   categories: WritableSignal<ICategory[]> = signal([]);
   customOptions: OwlOptions = {
     loop: true,
@@ -40,11 +42,13 @@ export class HomeCategoriesComponent implements OnInit {
   }
   private readonly categoriesService = inject(CategoriesService);
   ngOnInit(): void {
-    this.categoriesService.getAllCategories().subscribe({
+    this.categoriesService.getAllCategories().pipe(takeUntil(this.destory$)).subscribe({
       next: (res) => {
-        console.log(res.data);
         this.categories.set(res.data);
       }
     })
+  }
+  ngOnDestroy(): void {
+    this.destory$.next('Done');
   }
 }

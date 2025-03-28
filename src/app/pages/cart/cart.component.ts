@@ -1,9 +1,10 @@
-import { Component, computed, ElementRef, inject, OnInit, Signal, signal, ViewChild, WritableSignal } from '@angular/core';
+import { Component, computed, ElementRef, inject, OnDestroy, OnInit, Signal, signal, ViewChild, WritableSignal } from '@angular/core';
 import { CartService } from '../../core/services/cart/cart.service';
 import { ICart } from '../../shared/interfaces/icart';
 import { ToastrService } from 'ngx-toastr';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +12,8 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
+  destory$: Subject<any> = new Subject();
   cartProducts: WritableSignal<ICart | null> = signal(null);
   cartNumber: Signal<number> = computed(() => this.cartService.cartNumber());
   private readonly cartService = inject(CartService);
@@ -20,7 +22,7 @@ export class CartComponent implements OnInit {
     this.getAllCartProducts();
   }
   getAllCartProducts(): void {
-    this.cartService.getAllCartProducts().subscribe({
+    this.cartService.getAllCartProducts().pipe(takeUntil(this.destory$)).subscribe({
       next: (res) => {
         if (res.status === "success") {
           this.cartService.cartNumber.set(res.numOfCartItems);
@@ -30,7 +32,7 @@ export class CartComponent implements OnInit {
     })
   }
   updateCartProductQuantity(productId: string, count: number): void {
-    this.cartService.updateCartProductQuantity(productId, count).subscribe({
+    this.cartService.updateCartProductQuantity(productId, count).pipe(takeUntil(this.destory$)).subscribe({
       next: (res) => {
         if (res.status === 'success') {
           this.cartProducts.set(res.data);
@@ -40,7 +42,7 @@ export class CartComponent implements OnInit {
     })
   }
   removeCartProduct(productId: string): void {
-    this.cartService.removeProductFromCart(productId).subscribe({
+    this.cartService.removeProductFromCart(productId).pipe(takeUntil(this.destory$)).subscribe({
       next: (res) => {
         if (res.status === 'success') {
           this.cartService.cartNumber.set(res.numOfCartItems);
@@ -51,7 +53,7 @@ export class CartComponent implements OnInit {
     })
   }
   clearCartProducts(): void {
-    this.cartService.clearCart().subscribe({
+    this.cartService.clearCart().pipe(takeUntil(this.destory$)).subscribe({
       next: (res) => {
         if (res.message === 'success') {
           this.cartProducts.set(null);
@@ -60,5 +62,8 @@ export class CartComponent implements OnInit {
         }
       }
     })
+  }
+  ngOnDestroy(): void {
+    this.destory$.next('Done');
   }
 }

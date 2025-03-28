@@ -1,10 +1,11 @@
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { ProductsService } from '../../core/services/products/products.service';
 import { IProduct } from '../../shared/interfaces/iproduct';
 import { CategoriesService } from '../../core/services/categories/categories.service';
 import { ICategory } from '../../shared/interfaces/icategory';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ProductItemComponent } from "../../shared/components/product-item/product-item.component";
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -12,7 +13,7 @@ import { ProductItemComponent } from "../../shared/components/product-item/produ
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
   isOpen: boolean = false;
   selectedCatId: string = '0';
   categoryName: WritableSignal<string> = signal('All Products');
@@ -23,6 +24,7 @@ export class ProductsComponent implements OnInit {
   page: WritableSignal<number> = signal(1);
   limit: WritableSignal<number> = signal(12);
   total: WritableSignal<number> = signal(0);
+  destory$: Subject<any> = new Subject();
   private readonly productsService = inject(ProductsService);
   private readonly categoriesService = inject(CategoriesService);
   ngOnInit(): void {
@@ -30,7 +32,7 @@ export class ProductsComponent implements OnInit {
     this.getAllCategories();
   }
   getAllProducts(): void {
-    this.productsService.getAllProducts(this.page(), this.limit()).subscribe({
+    this.productsService.getAllProducts(this.page(), this.limit()).pipe(takeUntil(this.destory$)).subscribe({
       next: (res) => {
         this.products.set(res.data);
         this.results.set(res.results);
@@ -39,7 +41,7 @@ export class ProductsComponent implements OnInit {
     });
   }
   getAllCategories(): void {
-    this.categoriesService.getAllCategories().subscribe({
+    this.categoriesService.getAllCategories().pipe(takeUntil(this.destory$)).subscribe({
       next: (res) => {
         this.categories.set(res.data);
       }
@@ -57,7 +59,7 @@ export class ProductsComponent implements OnInit {
     }
   }
   filterdProductsByCategoryId(id: string, catName: string): void {
-    this.productsService.getProductsByCategoryId(id, this.page(), this.limit()).subscribe({
+    this.productsService.getProductsByCategoryId(id, this.page(), this.limit()).pipe(takeUntil(this.destory$)).subscribe({
       next: (res) => {
         this.products.set(res.data);
         this.results.set(res.results);
@@ -73,5 +75,8 @@ export class ProductsComponent implements OnInit {
   }
   toggleSettings(): void {
     this.isOpen = !this.isOpen;
+  }
+  ngOnDestroy(): void {
+    this.destory$.next('Done');
   }
 }

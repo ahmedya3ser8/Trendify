@@ -1,7 +1,7 @@
-import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { IProduct } from '../../../../shared/interfaces/iproduct';
 import { ProductsService } from '../../../../core/services/products/products.service';
-import { map } from 'rxjs';
+import { map, Subject, takeUntil } from 'rxjs';
 import { ProductItemComponent } from "../../../../shared/components/product-item/product-item.component";
 
 @Component({
@@ -10,14 +10,18 @@ import { ProductItemComponent } from "../../../../shared/components/product-item
   templateUrl: './home-top-products.component.html',
   styleUrl: './home-top-products.component.scss'
 })
-export class HomeTopProductsComponent {
-products: WritableSignal<IProduct[]> = signal([]);
+export class HomeTopProductsComponent implements OnInit, OnDestroy {
+  destory$: Subject<any> = new Subject();
+  products: WritableSignal<IProduct[]> = signal([]);
   private readonly productsService = inject(ProductsService);
   ngOnInit(): void {
-    this.productsService.getStaticProducts().pipe(map(products => products.data.slice(0,8))).subscribe({
+    this.productsService.getStaticProducts().pipe(map(products => products.data.slice(0,8)), takeUntil(this.destory$)).subscribe({
       next: (res) => {
         this.products.set(res);
       }
     })
+  }
+  ngOnDestroy(): void {
+    this.destory$.next('Done');
   }
 }

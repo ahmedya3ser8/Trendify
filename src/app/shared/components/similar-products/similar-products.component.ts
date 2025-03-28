@@ -1,8 +1,9 @@
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { IProduct } from '../../interfaces/iproduct';
 import { ProductsService } from '../../../core/services/products/products.service';
 import { ActivatedRoute } from '@angular/router';
 import { ProductItemComponent } from "../product-item/product-item.component";
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-similar-products',
@@ -10,7 +11,8 @@ import { ProductItemComponent } from "../product-item/product-item.component";
   templateUrl: './similar-products.component.html',
   styleUrl: './similar-products.component.scss'
 })
-export class SimilarProductsComponent implements OnInit {
+export class SimilarProductsComponent implements OnInit, OnDestroy {
+  destory$: Subject<any> = new Subject();
   products: WritableSignal<IProduct[]> = signal([]);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly productsService = inject(ProductsService);
@@ -21,7 +23,7 @@ export class SimilarProductsComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe({
       next: (res) => {
         let currentId = String(res.get('id'));
-        this.productsService.getProductById(currentId).subscribe({
+        this.productsService.getProductById(currentId).pipe(takeUntil(this.destory$)).subscribe({
           next: (res) => {
             this.getProductsByCategoryId(res.data.category._id);
           }
@@ -30,10 +32,13 @@ export class SimilarProductsComponent implements OnInit {
     })
   }
   getProductsByCategoryId(id: string): void {
-    this.productsService.getProductsByCategoryId(id, 1, 4).subscribe({
+    this.productsService.getProductsByCategoryId(id, 1, 4).pipe(takeUntil(this.destory$)).subscribe({
       next: (res) => {
         this.products.set(res.data);
       }
     })
+  }
+  ngOnDestroy(): void {
+    this.destory$.next('Done');
   }
 }
