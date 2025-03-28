@@ -36,7 +36,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         next: (res) => {
           if (res.status === "success") {
             this.toastrService.success('order complete successfully');
-            timer(2000).pipe(takeUntil(this.destory$)).subscribe(() => this.router.navigateByUrl('/cart'));
+            timer(2000).pipe(takeUntil(this.destory$)).subscribe(() => this.router.navigateByUrl('/allorders'));
           }
         }
       })
