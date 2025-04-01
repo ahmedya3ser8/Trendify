@@ -17,8 +17,20 @@
   left: -70px;
 }
 
+@media screen and (max-width: 1200px) {
+  ::ng-deep .owl-prev {
+    left: 0px;
+  }
+}
+
 ::ng-deep .owl-next {
   right: -70px;
+}
+
+@media screen and (max-width: 1200px) {
+  ::ng-deep .owl-next {
+    right: 0px;
+  }
 }
 
 ::ng-deep .owl-prev:hover,

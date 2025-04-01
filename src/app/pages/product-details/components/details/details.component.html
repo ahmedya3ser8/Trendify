@@ -1,15 +1,15 @@
 <section class="py-28">
-  <div class="container max-w-screen-xl">
+  <div class="container max-w-screen-xl px-5 md:px-0">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-      <div class="image flex gap-8 justify-between">
-        <div class="w-[100px]">
+      <div class="image flex flex-col md:flex-row gap-4 md:gap-8 justify-between">
+        <div class="w-full flex flex-row justify-between md:flex-col md:w-[100px] order-2 md:order-1">
           @for (img of productItem().images; track $index) {
             <div (click)="selectedImg(img)" class="img mb-3 border border-main-color rounded-3xl cursor-pointer overflow-hidden">
               <img [src]="img" class="w-[80px]" alt="product-image" />
             </div>
           }
         </div>
-        <div class="h-[500px] w-full relative">
+        <div class="h-[400px] md:h-[500px] w-full relative order-1 md:order-2">
           <img [src]="imageCover" class="w-full h-full" alt="product-image" />
           <span class="absolute top-5 right-5 w-10 h-10 rounded-full text-main-color text-lg bg-white border border-main-color flex justify-center items-center">
             <i class="fa-regular fa-heart"></i>

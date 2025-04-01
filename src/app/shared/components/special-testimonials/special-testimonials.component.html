@@ -1,12 +1,12 @@
-<section class="customer py-20">
-  <div class="container max-w-screen-xl">
+<section class="customer py-10 md:py-20">
+  <div class="container max-w-screen-xl px-5 md:px-0">
     <div class="main-title text-center mb-10">
       <span class="text-main-color mb-3 text-3xl font-caveat">Testimonials</span>
-      <h2 class="text-[40px] text-text-color font-medium">What Our Customer Say</h2>
+      <h2 class="text-3xl md:text-[40px] text-text-color font-medium">What Our Customer Say</h2>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
       @for (item of customersData(); track $index) {
-        <div class="card bg-white rounded-md shadow-sm p-5">
+        <div class="card bg-white rounded-md shadow-sm p-5 text-center md:text-left">
           <span class="text-4xl text-main-color">
             <i class="fa-solid fa-quote-left"></i>
           </span>

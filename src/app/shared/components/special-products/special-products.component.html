@@ -1,12 +1,12 @@
-<section class="products py-20">
-  <div class="container max-w-screen-xl">
+<section class="products py-10 md:py-20">
+  <div class="container max-w-screen-xl px-5 md:px-0">
     <div class="main-title text-center">
       <span class="text-main-color mb-3 text-3xl font-caveat">Products</span>
-      <h2 class="text-[40px] text-text-color font-medium">Best Selling Product</h2>
+      <h2 class="text-3xl md:text-[40px] text-text-color font-medium">Best Selling Product</h2>
     </div>
     <ul class="flex gap-2 justify-center bg-[#eee] w-fit my-5 mx-auto p-2 rounded-3xl">
       @for (cat of categories(); track $index) {
-        <li [class.active]="selectedCatId == cat.id" class="rounded-3xl py-[5px] px-5 cursor-pointer" (click)="selectedId(cat.id)" > {{cat.name}} </li>
+        <li [class.active]="selectedCatId == cat.id" class="rounded-3xl py-[5px] px-3 md:px-5 text-sm md:text-base cursor-pointer" (click)="selectedId(cat.id)" > {{cat.name}} </li>
       }
     </ul>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5">

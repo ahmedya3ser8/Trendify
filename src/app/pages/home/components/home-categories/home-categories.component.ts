@@ -26,12 +26,18 @@ export class HomeCategoriesComponent implements OnInit, OnDestroy {
     navText: ['<i class="fa-solid fa-chevron-left"></i>', '<i class="fa-solid fa-chevron-right"></i>'],
     responsive: {
       0: {
-        items: 2
+        items: 1
       },
       400: {
-        items: 4
+        items: 2
+      },
+      550: {
+        items: 3
       },
       740: {
+        items: 4
+      },
+      850: {
         items: 6
       },
       940: {

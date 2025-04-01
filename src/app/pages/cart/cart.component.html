@@ -1,5 +1,5 @@
 <section class="py-32">
-  <div class="container max-w-screen-xl">
+  <div class="container max-w-screen-xl px-5 md:px-0">
     <div class="flex justify-between items-center">
       <div class="flex items-center gap-1">
         <h2 class="text-text-color text-3xl font-medium">Cart</h2>
@@ -13,14 +13,14 @@
     <div class="grid grid-cols-1 md:grid-cols-[1fr_350px] gap-5 mt-10">
       <div class="bg-white p-5 rounded-md">
         @for (prod of cartProducts()?.products; track prod.product.id) {
-          <div class="product flex items-center border-b border-gray-300 pt-5 first:pt-0 last:border-b-0">
-            <div class="image">
+          <div class="product flex flex-col gap-3 md:flex-row md:items-center border-b border-gray-300 py-5 first:pt-0 last:border-b-0">
+            <div class="image mb-3">
               <img [src]="prod.product.imageCover" class="w-32" alt="product-image" />
             </div>
             <div class="content flex justify-between items-center flex-1">
               <div class="caption">
                 <span class="text-gray-400 text-sm mb-2 block"> {{prod.product.category.name}} </span>
-                <h3 class="text-text-color text-xl font-semibold"> {{prod.product.title}} </h3>
+                <h3 class="text-text-color text-xl font-semibold"> {{prod.product.title.split(' ', 2).join(' ')}} </h3>
                 <div class="star bg-[#fafafa] rounded-3xl py-1 px-2 w-fit flex items-center gap-1">
                   <span> {{prod.product.ratingsAverage}} </span>
                   <i class="fa-solid fa-star text-yellow-500"></i>

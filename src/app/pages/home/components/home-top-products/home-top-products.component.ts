@@ -3,10 +3,11 @@ import { IProduct } from '../../../../shared/interfaces/iproduct';
 import { ProductsService } from '../../../../core/services/products/products.service';
 import { map, Subject, takeUntil } from 'rxjs';
 import { ProductItemComponent } from "../../../../shared/components/product-item/product-item.component";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home-top-products',
-  imports: [ProductItemComponent],
+  imports: [ProductItemComponent, RouterLink],
   templateUrl: './home-top-products.component.html',
   styleUrl: './home-top-products.component.scss'
 })

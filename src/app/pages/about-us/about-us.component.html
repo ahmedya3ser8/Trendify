@@ -1,13 +1,13 @@
 <section class="py-24">
-  <div class="container max-w-screen-xl relative">
-    <div class="image w-[80%] h-[600px] ms-auto border border-[#EAECF0]">
+  <div class="container max-w-screen-xl relative px-5 md:px-0">
+    <div class="image md:w-[80%] h-[600px] ms-auto border border-[#EAECF0]">
       <img src="/images/about-us.jpg" class="w-full h-full rounded-[36px]" alt="about-us" />
     </div>
-    <div class="content absolute left-0 top-1/2 -translate-y-[50%] w-[500px] p-8 rounded-3xl bg-white">
+    <div class="content absolute left-0 top-1/2 -translate-y-[50%] w-[350px] md:w-[500px] p-8 rounded-3xl bg-white">
       <span class="text-main-color text-4xl">
         <i class="fa-solid fa-quote-left"></i>
       </span>
-      <p class="text-xl my-3">
+      <p class="text-sm mdtext-xl my-3">
         We are glad to present you our most perfect Shopify theme, which supports Sections Everywhere,
         very high metric scores by google page speed insight.
         This is the most mobile-oriented theme that will be convenient on any of your devices.
@@ -21,10 +21,10 @@
 </section>
 
 <section class="py-20">
-  <div class="container max-w-screen-xl">
+  <div class="container max-w-screen-xl px-5 md:px-0">
     <div class="main-title text-center">
-      <h1 class="text-text-color mb-3 text-4xl font-bold">A few words about us</h1>
-      <p class="text-sm text-gray-400 font-medium">
+      <h1 class="text-text-color mb-3 text-3xl md:text-4xl font-bold">A few words about us</h1>
+      <p class="text-[16px] md:text-sm text-gray-400 font-medium">
         Make your best moments more stylish with our latest designs of clothing.
       </p>
     </div>
@@ -46,7 +46,7 @@
 </section>
 
 <section class="py-20">
-  <div class="container max-w-screen-xl">
+  <div class="container max-w-screen-xl px-5 md:px-0">
     <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-10">
       <div class="content">
         <h2 class="text-text-color text-3xl mb-5 font-bold">Trusted online shopping</h2>
@@ -65,7 +65,7 @@
 </section>
 
 <section class="py-20">
-  <div class="container max-w-screen-xl">
+  <div class="container max-w-screen-xl px-5 md:px-0">
     <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-10">
       <div class="image">
         <img src="/images/aboutus-3.png" class="w-full object-cover"  alt="aboutus" />
@@ -84,19 +84,21 @@
 </section>
 
 <section class="pb-10 pt-20">
-  <div class="main-title text-center">
-    <h2 class="text-text-color text-4xl flex gap-3 justify-center">
-      <span><i class="fa-brands fa-instagram"></i></span>
-      <span class="text-main-color italic font-bold">#iconic_fashion</span>
-      <span class="font-bold">On Instagram</span>
-    </h2>
-    <p class="text-gray-400 text-sm mt-3">Phasellus lorem malesuada ligula pulvinar commodo maecenas</p>
-  </div>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-10">
-    @for (item of aboutImgs(); track $index) {
-      <div class="image">
-        <img [src]="item" class="w-full h-full object-cover" alt="aboutus" />
-      </div>
-    }
+  <div class="px-5 md:px-0">
+    <div class="main-title text-center">
+      <h2 class="text-text-color text-4xl flex flex-col md:flex-row gap-3 justify-center">
+        <span><i class="fa-brands fa-instagram"></i></span>
+        <span class="text-main-color italic font-bold">#iconic_fashion</span>
+        <span class="font-bold">On Instagram</span>
+      </h2>
+      <p class="text-gray-400 text-sm mt-3">Phasellus lorem malesuada ligula pulvinar commodo maecenas</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 md:gap-0 mt-10">
+      @for (item of aboutImgs(); track $index) {
+        <div class="image">
+          <img [src]="item" class="w-full h-full object-cover" alt="aboutus" />
+        </div>
+      }
+    </div>
   </div>
 </section>

@@ -1,6 +1,6 @@
 <section class="py-32">
-  <div class="container max-w-screen-xl">
-    <form class="w-[50%] mx-auto" [formGroup]="addressForm" (ngSubmit)="submitForm()">
+  <div class="container max-w-screen-xl px-5 md:px-0">
+    <form class="w-full md:w-[50%] mx-auto" [formGroup]="addressForm" (ngSubmit)="submitForm()">
       <div class="mb-3">
         @let details = addressForm.get('details');
         <label for="details" class="block mb-2 text-text-color">Details</label>

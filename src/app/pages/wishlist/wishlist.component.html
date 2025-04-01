@@ -1,14 +1,14 @@
-<section class="py-32">
-  <div class="container max-w-screen-xl">
+<section class="pb-12 pt-32 md:py-32">
+  <div class="container max-w-screen-xl px-5 md:px-0">
     <div class="flex items-center gap-1">
       <h2 class="text-text-color text-3xl font-medium">Wishlist</h2>
       <span class="text-main-color"> {{wishlistNumber()}} items</span>
     </div>
     <div [class.md:grid-cols-2]="products().length > 0" class="grid grid-cols-1 gap-5 mt-10">
       @for (product of products(); track product.id) {
-        <div class="product flex items-center border-b border-gray-300 bg-white p-5 rounded-md pt-5 first:pt-0 last:border-b-0">
+        <div class="product flex flex-col md:flex-row md:items-center border-b border-gray-300 bg-white p-5 rounded-md pt-5 first:pt-0 last:border-b-0">
           <div class="image">
-            <img [src]="product.imageCover" class="w-32" alt="product-image" />
+            <img [src]="product.imageCover" class="w-32 mx-auto" alt="product-image" />
           </div>
           <div class="content flex justify-between items-center flex-1">
             <div class="caption">

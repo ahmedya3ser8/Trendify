@@ -24,7 +24,7 @@ export class HomeSliderComponent {
     autoplayHoverPause: true,
     dots: true,
     navSpeed: 700,
-    navText: ['', ''],
+    navText: ['<i class="fa-solid fa-chevron-left"></i>', '<i class="fa-solid fa-chevron-right"></i>'],
     items: 1,
     nav: true
   }
