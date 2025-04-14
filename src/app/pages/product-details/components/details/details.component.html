@@ -11,9 +11,15 @@
         </div>
         <div class="h-[400px] md:h-[500px] w-full relative order-1 md:order-2">
           <img [src]="imageCover" class="w-full h-full" alt="product-image" />
-          <span class="absolute top-5 right-5 w-10 h-10 rounded-full text-main-color text-lg bg-white border border-main-color flex justify-center items-center">
-            <i class="fa-regular fa-heart"></i>
-          </span>
+          @if (productIds.includes(productItem().id)) {
+            <span (click)="removeProductFromWishlist(productItem().id)" class="w-[2.5rem] h-[40px] bg-white border absolute top-3 right-3 flex justify-center items-center z-30 rounded-full cursor-pointer">
+              <i class="fa-solid fa-heart text-xl text-main-color"></i>
+            </span>
+          } @else {
+            <span (click)="addProductToWishlist(productItem().id)" class="w-[2.5rem] h-[40px] bg-white border absolute top-3 right-3 flex justify-center items-center z-30 rounded-full cursor-pointer text-main-color">
+              <i class="fa-regular fa-heart text-xl"></i>
+            </span>
+          }
         </div>
       </div>
       <div class="content">
@@ -44,20 +50,11 @@
         </ul>
         <div class="product_quantity text-text-color text-lg font-medium">
           Quantity :
-          <span class="text-main-color">220</span>
+          <span class="text-main-color">{{productItem().quantity}}</span>
         </div>
-        <div class="flex gap-4 my-4">
-          <div class="btns flex justify-around text-text-color w-[160px] border border-main-color py-3 rounded-xl">
-            <button>
-              <i class="fa-solid fa-minus"></i>
-            </button>
-            <span>1</span>
-            <button>
-              <i class="fa-solid fa-plus"></i>
-            </button>
-          </div>
-          <button class="w-full bg-main-color rounded-xl text-white">
-            <span>149 EGP</span>
+        <div class="my-4">
+          <button (click)="addToCart(productItem().id)" class="w-full md:w-[70%] bg-main-color rounded-xl py-3 text-white">
+            <span>{{productItem().price}} EGP</span>
             .
             <span>Add to Cart</span>
           </button>
